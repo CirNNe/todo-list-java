@@ -9,9 +9,9 @@ public class View {
 
         Scanner input = new Scanner(System.in);
         Scanner entrada = new Scanner(System.in);
-        int opcoes = 1;
+        int opcoes = 5;
 
-        while (opcoes > 0) {
+        while (opcoes != 0) {
             System.out.println("---- TODO LIST ----");
             System.out.println("1 - ADICIONAR TAREFA\n" +
                     "2 - MOSTRAR LISTA DE TAREFAS\n" +
@@ -36,20 +36,37 @@ public class View {
 
                 ControllerTarefa.adicionarTarefa(parametrosTarefa);
 
-            } else if (opcoes == 2) {
+            }
 
-                // implementar um While para a escolha da ordem de exibição das tarefas
+            else if (opcoes == 2) {
+                int opcoesMostrar = 4;
+                while(opcoesMostrar != 0) {
+                    System.out.println("LISTAR POR:\n" +
+                            "1 - PRIORIDADE\n" +
+                            "2 - CATEGORIA\n" +
+                            "3 - DATA FINAL\n" +
+                            "0 - SAIR");
+                    opcoesMostrar = entrada.nextInt();
+                    if(opcoesMostrar == 1) {
+                        ControllerTarefa listaTarefas = new ControllerTarefa();
+                        listaTarefas.lerTarefasOrdemPrioridade();
+                    } else if (opcoesMostrar == 2) {
+                        ControllerTarefa listaTarefas = new ControllerTarefa();
+                        listaTarefas.lerTarefasOrdemCategoria();
+                    } else if (opcoesMostrar == 3) {
+                        ControllerTarefa listaTarefas = new ControllerTarefa();
+                        listaTarefas.lerTarefasOrdemData();
+                    }
+                }
 
-                System.out.println("LISTAR POR:\n" +
-                        "1 - PRIORIDADE\n" +
-                        "2 - CATEGORIA\n" +
-                        "3 - DATA FINAL\n" +
-                        "0 - SAIR");
-                ControllerTarefa listaTarefas = new ControllerTarefa();
-                listaTarefas.lerTarefas();
+            }
 
-            } else if (opcoes == 3) {
+            else if (opcoes == 3) {
                 ControllerTarefa.lerTarefaUnica(input.next());
+            }
+
+            else if (opcoes == 4) {
+                // deletar uma tarefa informando o seu ID
             }
         }
     }

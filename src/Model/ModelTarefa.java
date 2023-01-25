@@ -68,12 +68,14 @@ public class ModelTarefa implements Comparable<ModelTarefa> {
     }
 
     @Override
-    public int compareTo(ModelTarefa o) {
-        if(this.getPrioridade() > o.getPrioridade()) {
+    public int compareTo(ModelTarefa prioridade) {
+        if(this.getPrioridade() > prioridade.getPrioridade()) {
             return -1;
-        } if(this.getPrioridade() < o.getPrioridade()) {
+        } if(this.getPrioridade() < prioridade.getPrioridade()) {
             return 1;
         }
         return 0;
     }
+
+
 }
