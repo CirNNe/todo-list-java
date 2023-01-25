@@ -1,0 +1,7 @@
+Dormir;Vida;3;24;Fazer
+Comer;Vida;5;24;Fazer
+codar;trabalho;4;24;Feito
+Sentar;Descanso;2;24;Fazer
+Tomar Café;Beber;5;24;Fazendo
+Comer Bolacha;Comer;1;24;Feito
+Comer;Vida;5;24;Fazer
