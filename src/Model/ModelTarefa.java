@@ -1,5 +1,8 @@
 package Model;
 
+/**
+ * Classe que define uma tarefa
+ */
 public class ModelTarefa implements Comparable<ModelTarefa> {
     private String nome;
     private String categoria;
@@ -66,6 +69,11 @@ public class ModelTarefa implements Comparable<ModelTarefa> {
                 status;
     }
 
+    /**
+     * Método compara o objeto prioridade dado com o atual
+     * @param prioridade o objeto que está sendo comparado
+     * @return -1 se a prioridade atual for maior que a passada, 1 se a prioridade atual for menor que a passada, 0 se a prioridade atual for igual a passada
+     */
     @Override
     public int compareTo(ModelTarefa prioridade) {
         if(this.getPrioridade() > prioridade.getPrioridade()) {

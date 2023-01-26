@@ -6,8 +6,11 @@ import java.util.*;
 
 public class ControllerTarefa {
 
+    /**
+     * Método para adicionar uma tarefa no arquivo.txt
+     * @param tarefa que será adicionada no arquivo
+     */
     public static void adicionarTarefa(ModelTarefa tarefa) {
-
         File arquivoTxt = new File("tarefas.txt");
         try (FileWriter escreverArquivo = new FileWriter(arquivoTxt, true);
              BufferedWriter escreveTarefa = new BufferedWriter(escreverArquivo)) {
@@ -27,6 +30,9 @@ public class ControllerTarefa {
         }
     }
 
+    /**
+     * Método mostra ao usuário as tarefas salvas em ordem de prioridade
+     */
     public static void lerTarefasOrdemPrioridade() {
         File arquivoTxt = new File("tarefas.txt");
         List<ModelTarefa> listaTarefas = new ArrayList<>();
@@ -64,6 +70,9 @@ public class ControllerTarefa {
         }
     }
 
+    /**
+     * Método mostra ao usuário as tarefas salvas em ordem alfabética por categoria
+     */
     public static void lerTarefasOrdemCategoria() {
         File arquivoTxt = new File("tarefas.txt");
         List<ModelTarefaOrdemCategoria> listaTarefas = new ArrayList<>();
@@ -101,6 +110,9 @@ public class ControllerTarefa {
         }
     }
 
+    /**
+     * Método mostra ao usuário as tarefas salvas em ordem por data
+     */
     public static void lerTarefasOrdemData() {
         File arquivoTxt = new File("tarefas.txt");
         List<ModelTarefaOrdemData> listaTarefas = new ArrayList<>();
@@ -138,6 +150,10 @@ public class ControllerTarefa {
         }
     }
 
+    /**
+     * Método mostra ao usuário uma ou mais de uma tarefa referente ao nome que for passado
+     * @param nomeTarefa que o usuário deseja visualizar
+     */
     public static void lerTarefaUnica(String nomeTarefa) {
         File arquivoTxt = new File("tarefas.txt");
         List<ModelTarefa> tarefa = new ArrayList<>();
@@ -177,6 +193,15 @@ public class ControllerTarefa {
         }
     }
 
+    /**
+     * Método edita uma ou mais tarefas
+     * @param nomeTarefaEditar que será editada
+     * @param novoNome
+     * @param novaCategoria
+     * @param novaPrioridade
+     * @param novaData
+     * @param novoStatus
+     */
     public static void editaTarefa(String nomeTarefaEditar, String novoNome, String novaCategoria, int novaPrioridade, String novaData, String novoStatus) {
         File arquivoTxt = new File("tarefas.txt");
         List<ModelTarefa> listaTarefas = new ArrayList<>();
@@ -228,6 +253,10 @@ public class ControllerTarefa {
         }
     }
 
+    /**
+     * Método deleta uma ou mais tarefas do arquivo.txt
+     * @param nomeTarefa a ser deletada
+     */
     public static void deletarTarefa(String nomeTarefa){
         File arquivoTxt = new File("tarefas.txt");
         List<ModelTarefa> listaTarefas = new ArrayList<>();
