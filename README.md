@@ -3,6 +3,7 @@
 <p align="center">Programa para gerenciamento de tarefas</p>
 
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white)
+![Version](https://img.shields.io/badge/version-v1.0.0-blue) 
 
 
 Indice
