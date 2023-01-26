@@ -66,7 +66,12 @@ public class View {
             }
 
             else if (opcoes == 4) {
+                // edita uma tarefa
+            }
+
+            else if (opcoes == 5) {
                 // deletar uma tarefa informando o seu ID
+                ControllerTarefa.deletarTarefa(input.next());
             }
         }
     }
