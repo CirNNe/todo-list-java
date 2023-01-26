@@ -3,14 +3,13 @@ package Model;
 public class ModelTarefa implements Comparable<ModelTarefa> {
     private String nome;
     private String categoria;
-    private String dataTermino;
     private int prioridade;
+    private String dataTermino;
     private String status;
 
-    public ModelTarefa(){
+    public ModelTarefa(){}
 
-    }
-    public ModelTarefa(String nome, String categoria, String dataTermino, int prioridade, String status) {
+    public ModelTarefa(String nome, String categoria, int prioridade, String dataTermino, String status) {
         this.nome = nome;
         this.categoria = categoria;
         this.dataTermino = dataTermino;
@@ -60,10 +59,10 @@ public class ModelTarefa implements Comparable<ModelTarefa> {
 
     @Override
     public String toString() {
-        return nome + ';' +
-                categoria + ';' +
-                dataTermino + ';' +
-                String.valueOf(prioridade) + ';' +
+        return nome + "  -  " +
+                categoria + "  -  " +
+                prioridade + "  -  " +
+                dataTermino + "  -  " +
                 status;
     }
 
@@ -76,6 +75,4 @@ public class ModelTarefa implements Comparable<ModelTarefa> {
         }
         return 0;
     }
-
-
 }

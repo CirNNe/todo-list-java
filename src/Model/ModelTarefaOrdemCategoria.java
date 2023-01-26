@@ -2,8 +2,8 @@ package Model;
 
 public class ModelTarefaOrdemCategoria extends ModelTarefa implements Comparable<ModelTarefa> {
 
-    public ModelTarefaOrdemCategoria(String nome, String categoria, String dataTermino, int prioridade, String status) {
-        super(nome, categoria, dataTermino, prioridade, status);
+    public ModelTarefaOrdemCategoria(String nome, String categoria, int prioridade, String dataTermino, String status) {
+        super(nome, categoria, prioridade, dataTermino, status);
     }
 
     @Override

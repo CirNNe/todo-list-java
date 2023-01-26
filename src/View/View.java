@@ -22,20 +22,21 @@ public class View {
             opcoes = entrada.nextInt();
 
             if(opcoes == 1) {
+                Scanner inputPrioridade = new Scanner(System.in);
+                System.out.println("AVISO: EVITE INSERIR TAREFAS COM O MESMO NOME!");
                 ModelTarefa parametrosTarefa = new ModelTarefa();
                 System.out.println("DIGITE O NOME DA TAREFA:");
                 parametrosTarefa.setNome(input.nextLine());
                 System.out.println("DIGITE A CATEGORIA:");
                 parametrosTarefa.setCategoria(input.nextLine());
+                System.out.println("DIGITE O NIVEL DE PRIORIDADE (1-5):");
+                parametrosTarefa.setPrioridade(inputPrioridade.nextInt());
                 System.out.println("DIGITE A DATA FINAL (d/m/A):");
                 parametrosTarefa.setDataTermino(input.nextLine());
                 System.out.println("DIGITE O STATUS (Fazer, Fazendo, Feito):");
                 parametrosTarefa.setStatus(input.nextLine());
-                System.out.println("DIGITE O NIVEL DE PRIORIDADE (1-5):");
-                parametrosTarefa.setPrioridade(input.nextInt());
 
                 ControllerTarefa.adicionarTarefa(parametrosTarefa);
-
             }
 
             else if (opcoes == 2) {
@@ -48,30 +49,49 @@ public class View {
                             "0 - SAIR");
                     opcoesMostrar = entrada.nextInt();
                     if(opcoesMostrar == 1) {
-                        ControllerTarefa listaTarefas = new ControllerTarefa();
-                        listaTarefas.lerTarefasOrdemPrioridade();
+                        ControllerTarefa.lerTarefasOrdemPrioridade();
                     } else if (opcoesMostrar == 2) {
-                        ControllerTarefa listaTarefas = new ControllerTarefa();
-                        listaTarefas.lerTarefasOrdemCategoria();
+                        ControllerTarefa.lerTarefasOrdemCategoria();
                     } else if (opcoesMostrar == 3) {
-                        ControllerTarefa listaTarefas = new ControllerTarefa();
-                        listaTarefas.lerTarefasOrdemData();
+                        ControllerTarefa.lerTarefasOrdemData();
                     }
                 }
 
             }
 
             else if (opcoes == 3) {
-                ControllerTarefa.lerTarefaUnica(input.next());
+                Scanner inputTarefaUnica = new Scanner(System.in);
+                System.out.println("DIGITE O NOME DA TAREFA DESEJADA");
+                ControllerTarefa.lerTarefaUnica(inputTarefaUnica.nextLine());
             }
 
             else if (opcoes == 4) {
-                // edita uma tarefa
+                Scanner inputTarefaEditar = new Scanner(System.in);
+                Scanner inputPrioridade = new Scanner(System.in);
+
+                System.out.println("AVISO: TAREFAS COM O MESMO NOME SERÃO AFETADAS!\n" +
+                                    "DIGITE O NOME DA TAREFA A SER EDITADA");
+                String nomeTarefaEditar = inputTarefaEditar.nextLine();
+
+                System.out.println("DIGITE O NOVO NOME DA TAREFA");
+                String novoNome = inputTarefaEditar.nextLine();
+                System.out.println("DIGITE A NOVA CATEGORIA DA TAREFA");
+                String novaCategoria = inputTarefaEditar.nextLine();
+                System.out.println("DIGITE O NOVO NÍVEL DE PRIORIDADE DA TAREFA (1-5)");
+                int novaPrioridade = inputPrioridade.nextInt();
+                System.out.println("DIGITE A NOVA DATA FINAL DA TAREFA (d/m/A)");
+                String dataFinal = inputTarefaEditar.nextLine();
+                System.out.println("DIGITE O NOVO STATUS DA TAREFA (Fazer, Fazendo, Feito)");
+                String novoStatus = inputTarefaEditar.nextLine();
+
+                ControllerTarefa.editaTarefa(nomeTarefaEditar, novoNome, novaCategoria, novaPrioridade, dataFinal, novoStatus);
             }
 
             else if (opcoes == 5) {
-                // deletar uma tarefa informando o seu ID
-                ControllerTarefa.deletarTarefa(input.next());
+                Scanner inputDeletarTarefa = new Scanner(System.in);
+                System.out.println("AVISO: TAREFAS COM O MESMO NOME SERÃO AFETADAS!\n" +
+                                    "DIGITE O NOME DA TAREFA A SER DELETADA");
+                ControllerTarefa.deletarTarefa(inputDeletarTarefa.nextLine());
             }
         }
     }
