@@ -2,7 +2,12 @@ package Controller;
 
 import Model.*;
 import java.io.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.*;
+
+import static java.lang.Integer.parseInt;
 
 public class ControllerTarefa {
 
@@ -16,13 +21,13 @@ public class ControllerTarefa {
              BufferedWriter escreveTarefa = new BufferedWriter(escreverArquivo)) {
             if (arquivoTxt.exists()) {
 
-                escreveTarefa.write(tarefa.getNome() + "  -  " + tarefa.getCategoria() + "  -  " +
-                        tarefa.getPrioridade() + "  -  " + tarefa.getDataTermino() +
-                        "  -  " + tarefa.getStatus() + "\n");
+                escreveTarefa.write(/*tarefa.getNome() + "  -  " + tarefa.getCategoria() + "  -  " +
+                        tarefa.getPrioridade() + "  -  " + tarefa.getDataFinal() +
+                        "  -  " + tarefa.getStatus()*/tarefa.toString() + "\n");
             } else {
                 arquivoTxt.createNewFile();
                 escreveTarefa.write(tarefa.getNome() + "  -  " + tarefa.getCategoria() + "  -  " +
-                        tarefa.getPrioridade() + "  -  " + tarefa.getDataTermino() +
+                        tarefa.getPrioridade() + "  -  " + tarefa.getDataFinal() +
                         "  -  " + tarefa.getStatus() + "\n");
             }
         } catch (Exception error) {
@@ -49,8 +54,14 @@ public class ControllerTarefa {
                     String[] camposLinha = linha.split("  -  ");
                     String nome = camposLinha[0];
                     String categoria = camposLinha[1];
-                    int prioridade = Integer.parseInt(camposLinha[2]);
-                    String dataFinal = camposLinha[3];
+                    int prioridade = parseInt(camposLinha[2]);
+
+                    String[] campoDataFinal = camposLinha[3].split("/");
+                    int dia = parseInt(campoDataFinal[0]);
+                    int mes = parseInt(campoDataFinal[1]);
+                    int ano = parseInt(campoDataFinal[2]);
+                    LocalDate dataFinal = LocalDate.of(ano, mes, dia);
+
                     String status = camposLinha[4];
 
                     listaTarefas.add(new ModelTarefa(nome, categoria, prioridade, dataFinal, status));
@@ -58,8 +69,13 @@ public class ControllerTarefa {
 
                     linha = bufferedReader.readLine();
                 }
-                for (ModelTarefa i : listaTarefas) {
-                    System.out.println(i);
+
+                if(listaTarefas.isEmpty()) {
+                    System.out.println("NÃO HÁ TAREFAS PARA VISUALIZAR, COMECE ADICIONANDO ALGUMAS NA LISTA!");
+                } else {
+                    for (ModelTarefa i : listaTarefas) {
+                        System.out.println(i);
+                    }
                 }
 
             } else {
@@ -89,8 +105,14 @@ public class ControllerTarefa {
                     String[] camposLinha = linha.split("  -  ");
                     String nome = camposLinha[0];
                     String categoria = camposLinha[1];
-                    int prioridade = Integer.parseInt(camposLinha[2]);
-                    String dataFinal = camposLinha[3];
+                    int prioridade = parseInt(camposLinha[2]);
+
+                    String[] campoDataFinal = camposLinha[3].split("/");
+                    int dia = parseInt(campoDataFinal[0]);
+                    int mes = parseInt(campoDataFinal[1]);
+                    int ano = parseInt(campoDataFinal[2]);
+                    LocalDate dataFinal = LocalDate.of(ano, mes, dia);
+
                     String status = camposLinha[4];
 
                     listaTarefas.add(new ModelTarefaOrdemCategoria(nome, categoria,  prioridade, dataFinal, status));
@@ -98,8 +120,13 @@ public class ControllerTarefa {
 
                     linha = bufferedReader.readLine();
                 }
-                for (ModelTarefa i : listaTarefas) {
-                    System.out.println(i);
+
+                if(listaTarefas.isEmpty()) {
+                    System.out.println("NÃO HÁ TAREFAS PARA VISUALIZAR, COMECE ADICIONANDO ALGUMAS NA LISTA!");
+                } else {
+                    for (ModelTarefa i : listaTarefas) {
+                        System.out.println(i);
+                    }
                 }
 
             } else {
@@ -129,8 +156,14 @@ public class ControllerTarefa {
                     String[] camposLinha = linha.split("  -  ");
                     String nome = camposLinha[0];
                     String categoria = camposLinha[1];
-                    int prioridade = Integer.parseInt(camposLinha[2]);
-                    String dataFinal = camposLinha[3];
+                    int prioridade = parseInt(camposLinha[2]);
+
+                    String[] campoDataFinal = camposLinha[3].split("/");
+                    int dia = parseInt(campoDataFinal[0]);
+                    int mes = parseInt(campoDataFinal[1]);
+                    int ano = parseInt(campoDataFinal[2]);
+                    LocalDate dataFinal = LocalDate.of(ano, mes, dia);
+
                     String status = camposLinha[4];
 
                     listaTarefas.add(new ModelTarefaOrdemData(nome, categoria, prioridade, dataFinal, status));
@@ -138,8 +171,12 @@ public class ControllerTarefa {
 
                     linha = bufferedReader.readLine();
                 }
-                for (ModelTarefa i : listaTarefas) {
-                    System.out.println(i);
+                if(listaTarefas.isEmpty()) {
+                    System.out.println("NÃO HÁ TAREFAS PARA VISUALIZAR, COMECE ADICIONANDO ALGUMAS NA LISTA!");
+                } else {
+                    for (ModelTarefa i : listaTarefas) {
+                        System.out.println(i);
+                    }
                 }
 
             } else {
@@ -171,9 +208,16 @@ public class ControllerTarefa {
                     String[] camposLinha = linha.split("  -  ");
                     String nome = camposLinha[0];
                     String categoria = camposLinha[1];
-                    int prioridade = Integer.parseInt(camposLinha[2]);
-                    String dataFinal = camposLinha[3];
+                    int prioridade = parseInt(camposLinha[2]);
+
+                    String[] campoDataFinal = camposLinha[3].split("/");
+                    int dia = parseInt(campoDataFinal[0]);
+                    int mes = parseInt(campoDataFinal[1]);
+                    int ano = parseInt(campoDataFinal[2]);
+                    LocalDate dataFinal = LocalDate.of(ano, mes, dia);
+
                     String status = camposLinha[4];
+
                     if (nome.equalsIgnoreCase(nomeTarefa)) {
                         tarefa.add(new ModelTarefa(nome, categoria, prioridade, dataFinal, status));
                     }
@@ -199,13 +243,13 @@ public class ControllerTarefa {
      * @param novoNome
      * @param novaCategoria
      * @param novaPrioridade
-     * @param novaData
      * @param novoStatus
      */
-    public static void editaTarefa(String nomeTarefaEditar, String novoNome, String novaCategoria, int novaPrioridade, String novaData, String novoStatus) {
+    public static void editaTarefa(String nomeTarefaEditar, String novoNome, String novaCategoria, int novaPrioridade, int novoDia, int novoMes, int novoAno, String novoStatus) {
         File arquivoTxt = new File("tarefas.txt");
         List<ModelTarefa> listaTarefas = new ArrayList<>();
         ModelTarefa tarefaEditada = new ModelTarefa();
+        ModelTarefa setDataFinal = new ModelTarefa();
 
         try (FileReader leitorArquivo = new FileReader(arquivoTxt);
              BufferedReader bufferedReader = new BufferedReader(leitorArquivo);
@@ -218,8 +262,14 @@ public class ControllerTarefa {
                     String[] camposLinha = linha.split("  -  ");
                     String nome = camposLinha[0];
                     String categoria = camposLinha[1];
-                    int prioridade = Integer.parseInt(camposLinha[2]);
-                    String dataFinal = camposLinha[3];
+                    int prioridade = parseInt(camposLinha[2]);
+
+                    String[] campoDataFinal = camposLinha[3].split("/");
+                    int dia = parseInt(campoDataFinal[0]);
+                    int mes = parseInt(campoDataFinal[1]);
+                    int ano = parseInt(campoDataFinal[2]);
+                    LocalDate dataFinal = LocalDate.of(ano, mes, dia);
+
                     String status = camposLinha[4];
 
                     if (!nome.equalsIgnoreCase(nomeTarefaEditar)) {
@@ -228,10 +278,15 @@ public class ControllerTarefa {
                     linha = bufferedReader.readLine();
                 }
 
+                setDataFinal.setAnoParaFinalizar(novoAno);
+                setDataFinal.setMesParaFinalizar(novoMes);
+                setDataFinal.setDiaParaFinalizar(novoDia);
+                LocalDate dataFinal = LocalDate.of(novoAno, novoMes, novoDia);
+
                 tarefaEditada.setNome(novoNome);
                 tarefaEditada.setCategoria(novaCategoria);
                 tarefaEditada.setPrioridade(novaPrioridade);
-                tarefaEditada.setDataTermino(novaData);
+                tarefaEditada.setDataFinal(dataFinal);
                 tarefaEditada.setStatus(novoStatus);
 
                 listaTarefas.add(tarefaEditada);
@@ -272,8 +327,14 @@ public class ControllerTarefa {
                     String[] camposLinha = linha.split("  -  ");
                     String nome = camposLinha[0];
                     String categoria = camposLinha[1];
-                    int prioridade = Integer.parseInt(camposLinha[2]);
-                    String dataFinal = camposLinha[3];
+                    int prioridade = parseInt(camposLinha[2]);
+
+                    String[] campoDataFinal = camposLinha[3].split("/");
+                    int dia = parseInt(campoDataFinal[0]);
+                    int mes = parseInt(campoDataFinal[1]);
+                    int ano = parseInt(campoDataFinal[2]);
+                    LocalDate dataFinal = LocalDate.of(ano, mes, dia);
+
                     String status = camposLinha[4];
 
                     if(!nome.equalsIgnoreCase(nomeTarefa)) {

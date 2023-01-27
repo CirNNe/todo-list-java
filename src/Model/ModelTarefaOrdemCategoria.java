@@ -1,12 +1,14 @@
 package Model;
 
+import java.time.LocalDate;
+
 /**
  * Classe usada para rescrever o método compareTo da classe principal ModelTarefa
  */
 public class ModelTarefaOrdemCategoria extends ModelTarefa implements Comparable<ModelTarefa> {
 
-    public ModelTarefaOrdemCategoria(String nome, String categoria, int prioridade, String dataTermino, String status) {
-        super(nome, categoria, prioridade, dataTermino, status);
+    public ModelTarefaOrdemCategoria(String nome, String categoria, int prioridade, LocalDate dataFinal, String status) {
+        super(nome, categoria, prioridade, dataFinal, status);
     }
 
     /**
