@@ -3,12 +3,13 @@
 <p align="center">Programa para gerenciamento de tarefas</p>
 
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white)
-![Version](https://img.shields.io/badge/version-v1.0.0-blue) 
+![Version](https://img.shields.io/badge/version-v1.2.0-blue) 
 
 
 Indice
 =================
  * [Sobre](#-sobre)
+ * [Versão](#-versão)
  * [Tecnologias Utilizadas](#-tecnologias-utilizadas)
  * [Pré-requisitos](#-pré-requisitos)
  * [Como Executar o Projeto](#-como-executar-o-projeto)
@@ -17,6 +18,19 @@ Indice
 ## 🔖&nbsp; Sobre
 
 O projeto **TODO List** é uma programa para gerenciamento de tarefas. Nele podemos fazer um CRUD em um arquivo .txt para adicionar, ler, editar e apagar tarefas do nosso dia a dia usando apenas o terminal da IDE. 
+
+---
+
+## 🔖&nbsp; Versão
+
+![Version](https://img.shields.io/badge/version-v1.2.0-blue)
+- Adicionada a opção de criar alarmes para as tarefas
+
+![Version](https://img.shields.io/badge/version-v1.1.0-blue)
+- Alterado o tipo de dado das datas de entrega das tarefas
+
+![Version](https://img.shields.io/badge/version-v1.0.0-blue)
+- Definida a versão base do sistema
 
 ---
 
