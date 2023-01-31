@@ -1,8 +1,7 @@
 package Model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 
 /**
  * Classe que define uma tarefa
@@ -11,15 +10,13 @@ public class ModelTarefa implements Comparable<ModelTarefa> {
     private String nome;
     private String categoria;
     private int prioridade;
-    private int diaParaFinalizar;
-    private int mesParaFinalizar;
-    private int anoParaFinalizar;
-    private LocalDate dataFinal;
+    private LocalDateTime dataFinal;
     private String status;
+    private LocalDateTime alerta;
 
     public ModelTarefa(){}
 
-    public ModelTarefa(String nome, String categoria, int prioridade, LocalDate dataFinal, String status) {
+    public ModelTarefa(String nome, String categoria, int prioridade, LocalDateTime dataFinal, String status) {
         this.nome = nome;
         this.categoria = categoria;
         this.dataFinal = dataFinal;
@@ -30,6 +27,7 @@ public class ModelTarefa implements Comparable<ModelTarefa> {
     public String getNome() {
         return nome;
     }
+
 
     public void setNome(String nome) {
         this.nome = nome;
@@ -43,35 +41,11 @@ public class ModelTarefa implements Comparable<ModelTarefa> {
         this.categoria = categoria;
     }
 
-    public int getDiaParaFinalizar() {
-        return diaParaFinalizar;
-    }
-
-    public void setDiaParaFinalizar(int diaParaFinalizar) {
-        this.diaParaFinalizar = diaParaFinalizar;
-    }
-
-    public int getMesParaFinalizar() {
-        return mesParaFinalizar;
-    }
-
-    public void setMesParaFinalizar(int mesParaFinalizar) {
-        this.mesParaFinalizar = mesParaFinalizar;
-    }
-
-    public int getAnoParaFinalizar() {
-        return anoParaFinalizar;
-    }
-
-    public void setAnoParaFinalizar(int anoParaFinalizar) {
-        this.anoParaFinalizar = anoParaFinalizar;
-    }
-
-    public LocalDate getDataFinal() {
+    public LocalDateTime getDataFinal() {
         return dataFinal;
     }
 
-    public void setDataFinal(LocalDate dataFinal) {
+    public void setDataFinal(LocalDateTime dataFinal) {
         this.dataFinal = dataFinal;
     }
 
@@ -91,28 +65,30 @@ public class ModelTarefa implements Comparable<ModelTarefa> {
         this.status = status;
     }
 
+    public LocalDateTime getAlerta() {
+        return alerta;
+    }
 
+    public void setAlerta(LocalDateTime alerta) {
+        this.alerta = alerta;
+    }
 
     @Override
     public String toString() {
         return nome + "  -  " +
                 categoria + "  -  " +
                 prioridade + "  -  " +
-                dataFinal.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)) + "  -  " +
+                dataFinal.format(DateTimeFormatter.ofPattern("dd/MM/yy HH:mm")) + "  -  " +
                 status;
     }
 
-    /**
-     * Método compara o objeto prioridade dado com o atual
-     * @param prioridade o objeto que está sendo comparado
-     * @return -1 se a prioridade atual for maior que a passada, 1 se a prioridade atual for menor que a passada, 0 se a prioridade atual for igual a passada
-     */
     @Override
     public int compareTo(ModelTarefa prioridade) {
-        if(this.getPrioridade() > prioridade.getPrioridade()) {
-            return -1;
-        } if(this.getPrioridade() < prioridade.getPrioridade()) {
+        if (this.getPrioridade() < prioridade.getPrioridade()) {
             return 1;
+        }
+        if (this.getPrioridade() > prioridade.getPrioridade()) {
+            return -1;
         }
         return 0;
     }

@@ -1,9 +1,7 @@
 package View;
 
+import Controller.ControllerAlerta;
 import Controller.ControllerTarefa;
-import Model.ModelTarefa;
-
-import java.time.LocalDate;
 import java.util.Scanner;
 
 public class View {
@@ -20,62 +18,49 @@ public class View {
                     "3 - FILTRAR UM TAREFA\n" +
                     "4 - EDITAR TAREFA\n" +
                     "5 - EXCLUIR UMA TAREFA\n" +
+                    "6 - ADICIONAR ALERTA\n" +
                     "0 - SAIR\n");
             opcoes = entrada.nextInt();
 
             if(opcoes == 1) {
+
                 Scanner inputPrioridade = new Scanner(System.in);
-                Scanner inputDia = new Scanner(System.in);
-                Scanner inputMes = new Scanner(System.in);
-                Scanner inputAno = new Scanner(System.in);
+                Scanner inputAlerta = new Scanner(System.in);
+
                 System.out.println("AVISO: EVITE INSERIR TAREFAS COM O MESMO NOME!");
-                ModelTarefa parametrosTarefa = new ModelTarefa();
 
                 System.out.println("DIGITE O NOME DA TAREFA:");
-                parametrosTarefa.setNome(input.nextLine());
+                String nome = input.nextLine();
 
                 System.out.println("DIGITE A CATEGORIA:");
-                parametrosTarefa.setCategoria(input.nextLine());
+                String categoria = input.nextLine();
 
                 System.out.println("DIGITE O NIVEL DE PRIORIDADE (1-5):");
-                parametrosTarefa.setPrioridade(inputPrioridade.nextInt());
+                int prioridade = inputPrioridade.nextInt();
 
-                System.out.println("DIGITE O DIA DA ENTREGA (dd):");
-                parametrosTarefa.setDiaParaFinalizar(inputDia.nextInt());
-                int dia = parametrosTarefa.getDiaParaFinalizar();
+                System.out.println("DIGITE A DATA DE ENTREGA DA TAREFA (dd/MM/yyyy)");
+                String data = input.nextLine();
 
-                System.out.println("DIGITE O MÊS DA ENTREGA (MM):");
-                parametrosTarefa.setMesParaFinalizar(inputMes.nextInt());
-                int mes = parametrosTarefa.getMesParaFinalizar();
-
-                System.out.println("DIGITE O ANO DA ENTREGA (yyyy):");
-                parametrosTarefa.setAnoParaFinalizar(inputAno.nextInt());
-                int ano = parametrosTarefa.getAnoParaFinalizar();
+                System.out.println("DIGITE O HORARIO DE ENTREGA DA TAREFA (HH:mm)");
+                String horario = input.nextLine();
 
                 System.out.println("DIGITE O STATUS (Fazer, Fazendo, Feito):");
-                parametrosTarefa.setStatus(input.nextLine());
+                String status = input.nextLine();
 
-                LocalDate dataFinal = LocalDate.of(ano, mes, dia);
-                parametrosTarefa.setDataFinal(dataFinal);
-
-                ControllerTarefa.adicionarTarefa(parametrosTarefa);
+                ControllerTarefa.adicionarTarefa(nome, categoria, prioridade, data, horario, status);
             }
 
             else if (opcoes == 2) {
                 int opcoesMostrar = 4;
                 while(opcoesMostrar != 0) {
-                    System.out.println("LISTAR POR:\n" +
+                    System.out.println("---- LISTAR POR ----\n" +
                             "1 - PRIORIDADE\n" +
                             "2 - CATEGORIA\n" +
                             "3 - DATA FINAL\n" +
                             "0 - SAIR");
                     opcoesMostrar = entrada.nextInt();
-                    if(opcoesMostrar == 1) {
-                        ControllerTarefa.lerTarefasOrdemPrioridade();
-                    } else if (opcoesMostrar == 2) {
-                        ControllerTarefa.lerTarefasOrdemCategoria();
-                    } else if (opcoesMostrar == 3) {
-                        ControllerTarefa.lerTarefasOrdemData();
+                    if(opcoesMostrar != 0) {
+                        ControllerTarefa.lerTarefas(opcoesMostrar);
                     }
                 }
 
@@ -90,9 +75,6 @@ public class View {
             else if (opcoes == 4) {
                 Scanner inputTarefaEditar = new Scanner(System.in);
                 Scanner inputPrioridade = new Scanner(System.in);
-                Scanner inputDia = new Scanner(System.in);
-                Scanner inputMes = new Scanner(System.in);
-                Scanner inputAno = new Scanner(System.in);
 
                 System.out.println("AVISO: TAREFAS COM O MESMO NOME SERÃO AFETADAS!\n" +
                                     "DIGITE O NOME DA TAREFA A SER EDITADA");
@@ -107,21 +89,17 @@ public class View {
                 System.out.println("DIGITE O NOVO NÍVEL DE PRIORIDADE DA TAREFA (1-5)");
                 int novaPrioridade = inputPrioridade.nextInt();
 
-                System.out.println("DIGITE O NOVO DIA FINAL DA TAREFA (dd)");
-                int novoDiaFinal = inputDia.nextInt();
+                System.out.println("DIGITE A NOVA DATA DE ENTREGA DA TAREFA (dd/MM/yyyy)");
+                String novaData = inputTarefaEditar.nextLine();
 
-                System.out.println("DIGITE O NOVO MÊS FINAL DA TAREFA (MM)");
-                int novoMesFinal = inputMes.nextInt();
-
-                System.out.println("DIGITE O NOVO ANO FINAL DA TAREFA (yyyy)");
-                int novoAnoFinal = inputAno.nextInt();
+                System.out.println("DIGITE O NOVO HORÁRIO DE ENTREGA DA TAREFA (HH:mm)");
+                String novoHorario = inputTarefaEditar.nextLine();
 
                 System.out.println("DIGITE O NOVO STATUS DA TAREFA (Fazer, Fazendo, Feito)");
                 String novoStatus = inputTarefaEditar.nextLine();
 
                 ControllerTarefa.editaTarefa(nomeTarefaEditar, novoNome, novaCategoria,
-                                            novaPrioridade, novoDiaFinal, novoMesFinal,
-                                            novoAnoFinal, novoStatus);
+                                            novaPrioridade, novaData, novoHorario, novoStatus);
             }
 
             else if (opcoes == 5) {
@@ -129,6 +107,21 @@ public class View {
                 System.out.println("AVISO: TAREFAS COM O MESMO NOME SERÃO AFETADAS!\n" +
                                     "DIGITE O NOME DA TAREFA A SER DELETADA");
                 ControllerTarefa.deletarTarefa(inputDeletarTarefa.nextLine());
+            }
+
+            else if (opcoes == 6) {
+                Scanner inputAlerta = new Scanner(System.in);
+
+                System.out.println("DIGITE O NOME DA TAREFA QUE DESEJA ADICIONAR O ALARME");
+                String nome = inputAlerta.nextLine();
+
+                System.out.println("DIGITE A DATA DO ALARME");
+                String data = inputAlerta.nextLine();
+
+                System.out.println("DIGITE A HORA DO ALARME");
+                String hora = inputAlerta.nextLine();
+
+                ControllerAlerta.criaAlertaTarefa(nome, data, hora);
             }
         }
     }
