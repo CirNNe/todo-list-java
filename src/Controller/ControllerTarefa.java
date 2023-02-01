@@ -8,6 +8,14 @@ import java.time.LocalDateTime;
 import java.util.*;
 import static java.lang.Integer.parseInt;
 
+/**
+ * Classe de controle das tarefas
+ * adicionarTarefa: adiciona uma tarefa no arquivo.txt
+ * lerTarefas: lê tarefas em ordem de prioridade, categoria e data de termino
+ * lerTarefaUnica: lê uma tarefa específica ou mais de uma tarefa com o mesmo nome
+ * editaTarefa: edita uma tarefa específica ou mais de uma tarefa com o mesmo nome
+ * deletarTarefa: deleta uma tarefa específica ou mais de uma tarefa com o mesmo nome
+ */
 public class ControllerTarefa {
 
     /**
@@ -306,6 +314,4 @@ public class ControllerTarefa {
             System.out.println("ERRO AO TENTAR LER O ARQUIVO!");
         }
     }
-
-
 }

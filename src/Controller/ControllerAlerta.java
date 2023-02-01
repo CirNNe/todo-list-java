@@ -1,16 +1,29 @@
 package Controller;
 
+import Model.ModelAlerta;
 import Model.ModelTarefa;
 import java.io.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import static java.lang.Integer.parseInt;
 
+/**
+ * Classe de controle dos alertas
+ * criaAlertaTarefa: cria um alerta para uma tarefa desejada
+ * mostraAlerta: ativa o alarme da tarefa mostrando no terminal
+ * deletaAlerta: apaga um alerta desejado
+ */
 public class ControllerAlerta {
 
+    /**
+     * Método que cria um alarme para uma tarefa
+     * Poderá ser definido mais de um alarme por tarefa
+     * @param nomeTarefa nome da tarefa que se deseja definir o alarme
+     * @param dataAlarme data em que o alarme será ativado no terminal (dd/MM/yyyy)
+     * @param horaAlarme hora em que o alarme será ativado no terminal (HH:mm)
+     */
     public static void criaAlertaTarefa(String nomeTarefa, String dataAlarme, String horaAlarme) {
 
         File arquivoTarefasTxt = new File("tarefas.txt");
@@ -75,6 +88,55 @@ public class ControllerAlerta {
             } catch (IOException error) {
                 System.out.println("ERRO AO TENTAR REGISTRAR TAREFA!");
             }
+        }
+    }
+
+    /**
+     * Método que retorna um print no terminal dos alertas ativados
+     * Se o alarme definido pelo usuário estiver igual a hora atual ou a hora atual estiver a frente do alarme, será printado no terminal
+     */
+    public static void mostraAlerta(){
+        File arquivoAlertasTxt = new File("alertas.txt");
+        List<ModelAlerta> alertas = new ArrayList<>();
+
+        try (FileReader leitorArquivo = new FileReader(arquivoAlertasTxt);
+             BufferedReader bufferedReader = new BufferedReader(leitorArquivo)
+        ) {
+
+            if (arquivoAlertasTxt.exists()) {
+                String linha = bufferedReader.readLine();
+
+                while (linha != null && !linha.isEmpty()) {
+
+                    String[] camposLinha = linha.split("  -  ");
+                    String nome = camposLinha[0];
+                    String categoria = camposLinha[1];
+                    int prioridade = parseInt(camposLinha[2]);
+                    LocalDateTime dataFinal = LocalDateTime.parse(camposLinha[3]);
+                    String status = camposLinha[4];
+                    LocalDateTime alerta = LocalDateTime.parse(camposLinha[5]);
+
+                    if(alerta.equals(LocalDateTime.now()) || LocalDateTime.now().isAfter(alerta)) {
+                        alertas.add(new ModelAlerta(nome, categoria, prioridade, dataFinal, status, alerta));
+                        Collections.sort(alertas);
+                    }
+
+
+
+                    linha = bufferedReader.readLine();
+                }
+
+                System.out.println("---- ALERTAS ----");
+                for(ModelTarefa alerta : alertas) {
+                    System.out.println(alerta);
+                }
+
+
+            } else {
+                System.out.println("LISTA DE ALERTAS VAZIO");
+            }
+        } catch (IOException error) {
+            System.out.println("ERRO AO TENTAR LER O ARQUIVO!");
         }
     }
 }

@@ -24,6 +24,15 @@ public class ModelTarefa implements Comparable<ModelTarefa> {
         this.status = status;
     }
 
+    public ModelTarefa(String nome, String categoria, int prioridade, LocalDateTime dataFinal, String status, LocalDateTime alerta) {
+        this.nome = nome;
+        this.categoria = categoria;
+        this.dataFinal = dataFinal;
+        this.prioridade = prioridade;
+        this.status = status;
+        this.alerta = alerta;
+    }
+
     public String getNome() {
         return nome;
     }

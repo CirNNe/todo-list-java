@@ -12,6 +12,7 @@ public class View {
         int opcoes = 5;
 
         while (opcoes != 0) {
+            ControllerAlerta.mostraAlerta();
             System.out.println("---- TODO LIST ----");
             System.out.println("1 - ADICIONAR TAREFA\n" +
                     "2 - MOSTRAR LISTA DE TAREFAS\n" +
