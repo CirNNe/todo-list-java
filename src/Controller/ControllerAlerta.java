@@ -127,16 +127,69 @@ public class ControllerAlerta {
                 }
 
                 System.out.println("---- ALERTAS ----");
-                for(ModelTarefa alerta : alertas) {
-                    System.out.println(alerta);
-                }
+                if(alertas.isEmpty()) {
 
+                    System.out.println("NÃO HÁ ALERTAS ATIVOS NO MOMENTO");
+                } else {
+                    for(ModelTarefa alerta : alertas) {
+                        System.out.println(alerta);
+                    }
+                }
 
             } else {
                 System.out.println("LISTA DE ALERTAS VAZIO");
             }
         } catch (IOException error) {
             System.out.println("ERRO AO TENTAR LER O ARQUIVO!");
+        }
+    }
+
+    /**
+     * Método para excluir um alerta específico ou mais de um com o mesmo nome
+     * @param nomeTarefa nome da tarefa que deseja excluir o alarme
+     */
+    public static void deletaAlerta(String nomeTarefa) {
+        File arquivoAlertasTxt = new File("alertas.txt");
+        List<ModelAlerta> alertas = new ArrayList<>();
+
+        try (FileReader leitorArquivo = new FileReader(arquivoAlertasTxt);
+             BufferedReader bufferedReader = new BufferedReader(leitorArquivo)
+        ) {
+
+            if (arquivoAlertasTxt.exists()) {
+                String linha = bufferedReader.readLine();
+
+                while (linha != null && !linha.isEmpty()) {
+
+                    String[] camposLinha = linha.split("  -  ");
+                    String nome = camposLinha[0];
+                    String categoria = camposLinha[1];
+                    int prioridade = parseInt(camposLinha[2]);
+                    LocalDateTime dataFinal = LocalDateTime.parse(camposLinha[3]);
+                    String status = camposLinha[4];
+                    LocalDateTime alerta = LocalDateTime.parse(camposLinha[5]);
+
+                    if (!nome.equalsIgnoreCase(nomeTarefa)) {
+                        alertas.add(new ModelAlerta(nome, categoria, prioridade, dataFinal, status, alerta));
+                    }
+
+                    linha = bufferedReader.readLine();
+                }
+            }
+        } catch (IOException error) {
+            System.out.println("ERRO AO TENTAR LER O ARQUIVO!");
+        }
+
+        try (FileWriter escreverArquivo = new FileWriter(arquivoAlertasTxt, false);
+             BufferedWriter escreveTarefa = new BufferedWriter(escreverArquivo)
+        ) {
+            for (int contador = 0; contador < alertas.size(); contador++) {
+                escreveTarefa.write(alertas.get(contador).getNome() + "  -  " + alertas.get(contador).getCategoria() +
+                        "  -  " + alertas.get(contador).getPrioridade() + "  -  " + alertas.get(contador).getDataFinal() +
+                        "  -  " + alertas.get(contador).getStatus() + "  -  " + alertas.get(contador).getAlerta() + "\n");
+            }
+        } catch (IOException error) {
+            System.out.println("ERRO AO TENTAR REGISTRAR TAREFA!");
         }
     }
 }

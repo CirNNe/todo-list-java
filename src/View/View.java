@@ -20,6 +20,7 @@ public class View {
                     "4 - EDITAR TAREFA\n" +
                     "5 - EXCLUIR UMA TAREFA\n" +
                     "6 - ADICIONAR ALERTA\n" +
+                    "7 - EXCLUIR UM ALERTA\n" +
                     "0 - SAIR\n");
             opcoes = entrada.nextInt();
 
@@ -123,6 +124,13 @@ public class View {
                 String hora = inputAlerta.nextLine();
 
                 ControllerAlerta.criaAlertaTarefa(nome, data, hora);
+            }
+
+            else if (opcoes == 7) {
+                Scanner inputDeletaAlerta = new Scanner(System.in);
+                System.out.println("AVISO: ALERTAS COM O MESMO NOME SERÃO AFETADAS!\n" +
+                        "DIGITE O NOME DO ALERTA A SER DELETADO");
+                ControllerAlerta.deletaAlerta(inputDeletaAlerta.nextLine());
             }
         }
     }
