@@ -3,8 +3,11 @@
 <p align="center">Programa para gerenciamento de tarefas</p>
 
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white)
-![Version](https://img.shields.io/badge/version-v1.2.0-blue) 
-
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![Cloudflare](https://img.shields.io/badge/Cloudflare-F38020?style=for-the-badge&logo=Cloudflare&logoColor=white)
+![Version](https://img.shields.io/badge/version-v1.3.0-blue) 
 
 Indice
 =================
@@ -23,6 +26,9 @@ O projeto **TODO List** é uma programa para gerenciamento de tarefas. Nele pode
 
 ## 🔖&nbsp; Versão
 
+![Version](https://img.shields.io/badge/version-v1.3.0-blue)
+- Adicionado frontend do programa para futuras mudanças na interface do usuário
+
 ![Version](https://img.shields.io/badge/version-v1.2.0-blue)
 - Adicionada a opção de criar alarmes para as tarefas
 
@@ -36,9 +42,12 @@ O projeto **TODO List** é uma programa para gerenciamento de tarefas. Nele pode
 
 ## 🚀 Tecnologias utilizadas
 
-O projeto foi desenvolvido utilizando a linguagem de programação
+O projeto foi desenvolvido utilizando as seguintes tecnologias:
 
 - Java
+- JavaScript
+- HTML5
+- CSS3 + Cloudflare
 
 ---
 

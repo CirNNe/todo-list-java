@@ -1,7 +1,7 @@
-package View;
+package Backend.View;
 
-import Controller.ControllerAlerta;
-import Controller.ControllerTarefa;
+import Backend.Controller.ControllerAlerta;
+import Backend.Controller.ControllerTarefa;
 import java.util.Scanner;
 
 public class View {

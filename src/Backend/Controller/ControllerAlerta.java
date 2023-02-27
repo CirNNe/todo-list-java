@@ -1,7 +1,7 @@
-package Controller;
+package Backend.Controller;
 
-import Model.ModelAlerta;
-import Model.ModelTarefa;
+import Backend.Model.ModelAlerta;
+import Backend.Model.ModelTarefa;
 import java.io.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
